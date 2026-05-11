@@ -162,7 +162,7 @@ To start using the modules:
 * Added seed reproducibility from the config.txt due to earlier misinterpretation of the subject PDF.
 * Edited the readme.
 
-## What Worked and What Improved
+## What Worked and What Could Be Improved
 
 The DFS maze generation worked as intended, and separating the components into separate modules really helped for fixing bugs and reusability. Furthermore, the structure of the project was kept relatively uncluttered with every file having its explicit purpose. 
 
