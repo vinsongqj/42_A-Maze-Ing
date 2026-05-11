@@ -57,8 +57,7 @@ ENTRY=0,0              # Entry coordinates
 EXIT=19,14             # Exit coordinates
 OUTPUT_FILE=maze.txt   # The file name of the output
 PERFECT=True           # Bool that ensures one path if True, and creates loops if False
-SEED=*your seed*      # This parameter should only be included if the maze needs to be
-                         reproduced, otherwise it has to be removed
+SEED=*your seed*       # This parameter is optional
 ```
 
  ## Maze Generation

@@ -1,3 +1,21 @@
+"""
+MAIN FILE
+
+Runs together with the config.txt file.
+Generates the maze based on the settings in the config.txt file
+
+Comments are allowed in config.txt and must start with '#' per line
+Allowed config.txt fields:
+    - WIDTH
+    - HEIGHT
+    - ENTRY
+    - EXIT
+    - OUTPUT_FILE
+    - PERFECT
+    - SEED (optional)
+
+"""
+
 import sys
 from maze_gen.generator import MazeGenerator
 from maze_gen.display import MazeRenderer

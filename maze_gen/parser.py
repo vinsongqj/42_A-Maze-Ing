@@ -1,8 +1,27 @@
+"""
+MAZE PARSER
+
+This file handles the parsing of config.txt by
+reading the data inside in a specific format of
+'FIELD=DATA'
+
+Comments are allowed and must begin with '#' per line
+"""
+
 from typing import Dict, Tuple, Any
 from maze_gen.validator import ConfigError
 
 
 def extract_config_data(filepath: str) -> Dict[str, Any]:
+
+    """
+    Uses all helper functions in this file and extracts data in config file
+    as a dictionary.
+
+    Default dictionary is created beforehand. Data read from the
+    config file replaces the dictionary's respective field data.
+    """
+
     with open(filepath, "r") as f:
         config = {
             "WIDTH": None,
@@ -29,6 +48,12 @@ def extract_config_data(filepath: str) -> Dict[str, Any]:
 
 
 def parse_raw_value(key: str, value: Any) -> Any:
+
+    """
+    Extracts the value data and tries convert the datatype based
+    on the field it was in.
+    """
+
     try:
         if key in ['WIDTH', 'HEIGHT']:
             return int(value)
@@ -50,6 +75,12 @@ def parse_raw_value(key: str, value: Any) -> Any:
 
 
 def validate_key(key: str) -> bool:
+
+    """
+    Checks if the field / key in the config file matches
+    a list of allowed fields. Everything else is rejected.
+    """
+
     valid_key_list = ['WIDTH', 'HEIGHT', 'ENTRY', 'EXIT',
                       'OUTPUT_FILE', 'PERFECT', 'SEED']
 
@@ -59,6 +90,13 @@ def validate_key(key: str) -> bool:
 
 
 def extract_one_key_value_pair(split_line: list[str]) -> Tuple[str, str]:
+
+    """
+    Takes in a list of strings from a single line and
+    filters out comment data. and tries to build it
+    into a Tuple of raw strings in (KEY, VALUE) format.
+    """
+
     if "#" in split_line[1]:
         seperated_values = split_line[1].partition("#")
         ph_value = ""
