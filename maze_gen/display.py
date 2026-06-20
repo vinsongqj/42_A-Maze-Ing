@@ -138,7 +138,7 @@ class MazeRenderer:
         ch = self._get_key_press().lower()
 
         if ch == "r":
-            self.gen.generate()
+            self.gen.generate(perfect=self.gen.perfect)
         elif ch == "p":
             self.show_path = not self.show_path
         elif ch == "c":

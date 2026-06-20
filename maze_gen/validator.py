@@ -46,7 +46,7 @@ def field_validation_rules(config: Dict[str, Any]) -> None:
     """
     Custom rules for what data is allowed for each field.
 
-    ENTRY and EXIT coordinates cannot be at or beyong the maze border
+    ENTRY and EXIT coordinates cannot be at or beyond the maze border
     ENTRY and EXIT coordinates cannot overlap
     """
 

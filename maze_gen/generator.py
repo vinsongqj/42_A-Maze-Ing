@@ -35,6 +35,7 @@ class MazeGenerator:
         self.error_msg = ""
         self.grid: List[List[int]] = []
         self.locked_cells: Set[Tuple[int, int]] = set()
+        self.perfect: bool = True
         if seed is not None:
             random.seed(seed)
 
@@ -77,6 +78,7 @@ class MazeGenerator:
         """
 
         self.locked_cells.clear()
+        self.perfect = perfect
         min_width = 8
         min_height = 7
         if use_logo:
@@ -123,7 +125,14 @@ class MazeGenerator:
             for _ in range(int((self.width * self.height) * 0.05)):
                 rx = random.randint(0, self.width-1)
                 ry = random.randint(0, self.height-1)
-                self.grid[ry][rx] &= ~random.choice([NORTH, EAST, SOUTH, WEST])
+                direction = random.choice([NORTH, EAST, SOUTH, WEST])
+                dx, dy = MOVEMENTS[direction]
+                nx, ny = rx + dx, ry + dy
+                if (0 <= nx < self.width and 0 <= ny < self.height
+                        and (rx, ry) not in self.locked_cells
+                        and (nx, ny) not in self.locked_cells):
+                    self.grid[ry][rx] &= ~direction
+                    self.grid[ny][nx] &= ~OPPOSITES[direction]
 
     def solve(self, start: Tuple[int, int] = (0, 0),
               end: Optional[Tuple[int, int]] = None) -> Optional[str]:
