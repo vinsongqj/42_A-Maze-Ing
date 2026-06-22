@@ -32,16 +32,28 @@ def extract_config_data(filepath: str) -> Dict[str, Any]:
             "OUTPUT_FILE": None,
             "SEED": None
         }
+        dup_checker = {
+            "WIDTH": None,
+            "HEIGHT": None,
+            "ENTRY": None,
+            "EXIT": None,
+            "PERFECT": None,
+            "OUTPUT_FILE": None,
+            "SEED": None
+        }
         filedata_lines = f.readlines()
-
         for line in filedata_lines:
-            split_line = line.strip("\n").split("=")
+            split_line = line.strip("\n").split("=", 1)
 
             if len(split_line) == 2:
                 key, value = extract_one_key_value_pair(split_line)
 
                 if validate_key(key):
-                    config[key] = parse_raw_value(key, value)
+                    if dup_checker[key] == None:
+                        config[key] = parse_raw_value(key, value)
+                        dup_checker[key] = 1
+                    else:
+                        raise ConfigError("Duplicate Key field detected")
                 else:
                     raise ConfigError("Invalid Key field detected")
         return config

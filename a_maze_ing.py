@@ -66,6 +66,8 @@ def main() -> None:
         print(e)
     except ConfigError as e:
         print(e)
+    except FileNotFoundError as e:
+        print(e)
     except Exception as e:
         print(f"Unknown Error: {e}")
 

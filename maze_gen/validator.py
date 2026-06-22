@@ -56,10 +56,10 @@ def field_validation_rules(config: Dict[str, Any]) -> None:
 
     if (entry_x >= size_x or entry_y >= size_y) or (entry_x < 0
                                                     or entry_y < 0):
-        raise ConfigError(f"Entry coordinates out of bounds {config["ENTRY"]}")
+        raise ConfigError(f'Entry coordinates out of bounds {config["ENTRY"]}')
     if (exit_x >= size_x or exit_y >= size_y) or (exit_x < 0 or
                                                   exit_y < 0):
-        raise ConfigError(f"Exit coordinates out of bounds {config["EXIT"]}")
+        raise ConfigError(f'Exit coordinates out of bounds {config["EXIT"]}')
     if (entry_x == exit_x and entry_y == exit_y):
         raise ConfigError("Entry and Exit coordinates cannot occupy "
                           "the same space")
